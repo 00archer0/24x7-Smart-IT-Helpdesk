@@ -12,4 +12,18 @@
 - if the support agent selects one from the suggestions provided, the system should be able to learn and then keep that as the correct   solution for similar future search’s. Implemented.
 
 # Instructions to run this project.
-  follow this video 
+ 
+ 1. Dwonload this project
+ 2. Extract the file from downloaded zip.
+ 3. open the commandprompt in the location "./24x7-Smart-IT-Helpdesk/chatbot_IT"
+ 4. then run a command in commandprompt "python manage.py runserver"
+ 5. open your internet browser/chrome "http://127.0.0.1:8000/chatbot/index" run this url
+ 
+ 
+### To run this project you should have installed 
+ - python 3
+ - Django
+ - nltk
+ - gensim
+ - pandas
+ and all the libraries it will ask you to download. 
