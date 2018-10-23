@@ -1,0 +1,38 @@
+{% if query == "add_answer" %}
+              <ul id="answer" class="list-group-item" >
+                    <div class="col-md-12">
+                    <p>Make Your Contribution<br>
+                    </div>
+                    <li>   
+                            <textarea id="ans_submit" class="form-control" rows="5" id="input_answer" placeholder="Type your answer here…" name="ans"></textarea>
+                            </br><button class=" btn btn-success" type="button" onclick="submit_ans()">submit</button>
+                    </li>
+                                
+            </ul>           
+                                      
+           
+{% elif status == 'yes' %}
+           <ul id="answer">
+                      <li class="list-group-item" "><p><strong>{{query}}</strong></p></li>                                                             </li>
+                                
+                     </ul>  
+{% elif status == 'no' %}
+             <ul id="answer">
+                      <li class="list-group-item" "><p><strong>{{query}}</strong></p></li>                                                             </li>
+                                
+                     </ul> 
+
+{% elif query == "Don't you have any question?" %}                     
+                     <ul id="answer">
+                      <li class="list-group-item" "><p><strong>{{query}}</strong></p></li>                                                             </li>
+                                
+                     </ul>
+{% else %}                     
+                     <ul id="answer">
+                      <li class="list-group-item" "><p><strong>Thank you</strong></p></li>                                                             </li>
+                                
+                     </ul>            
+                                                     
+{% endif %}                      
+
+                

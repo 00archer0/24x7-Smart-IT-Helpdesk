@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24x7 Smart IT Helpdesk</title>
+    {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'chatbot/js/jquery.min.js' %}"></script>
+    <script src="{% static 'chatbot/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'chatbot/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'chatbot/css/Community-ChatComments.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'chatbot/css/styles.css' %}" type="text/css">
+    
+    <script type="text/javascript">
+            $(function(){
+                $("#form1").on("submit",function(e){
+                        e.preventDefault();
+                        $.ajax({
+                        type:"POST",
+                        url:"./submission/",
+                        data:{
+                        "question":$("#input_ques").val() ,
+                        "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(data).appendTo("#chat")
+                               var element = document.getElementById("scroll");
+                               element.scrollTop = element.scrollHeight;
+                              } ,
+                              
+                                   
+                });
+              });              
+             });
+               
+           function yes() {
+                        $.ajax({
+                        type:"POST",
+                        url:"./addition/",
+                        data:{
+                        "input":'add_answer' ,
+                        "question":$("#input_ques").val(), 
+                        "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(data).appendTo("#chat")
+                               var element = document.getElementById("scroll");
+                               element.scrollTop = element.scrollHeight;
+                              } ,
+                                   
+                        });
+                     }
+          function later(){
+              $.ajax({
+                        type:"POST",
+                        url:"./addition/",
+                        data:{
+                           "input":' ' ,
+                          "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(data).appendTo("#chat")
+                               var element = document.getElementById("scroll");
+                               element.scrollTop = element.scrollHeight;
+                              } ,
+                                   
+                        });
+                        
+             }          
+              
+             function submit_ans(){
+                        $.ajax({
+                        type:"POST",
+                        url:"./submit_ans/",
+                        data:{
+                           "input":$("#ans_submit").val() ,
+                          "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(data).appendTo("#chat")
+                               var element = document.getElementById("scroll");
+                               element.scrollTop = element.scrollHeight;
+                              } ,
+                                   
+                        });
+              }  
+              
+              function change_order(val){
+                        $.ajax({
+                        type:"POST",
+                        url:"./feedback/",
+                        data:{
+                          "value":val.getElementsByTagName('p')[0].innerHTML,
+                          "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(val).removeClass('selected');
+                               $(val).addClass('selected');
+                              },
+                                   
+                        });
+              } 
+              
+              function save(){
+                        $.ajax({
+                        type:"POST",
+                        url:"./save/",
+                        data:{
+                          
+                          "csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val()        
+                    },
+                    dataType:'html' ,
+                    success:function(data,textStatus,jqXHR){
+                               $(val).addClass('selected');
+                              },
+                                   
+                        });
+              }  
+      </script>
+    
+    <style> 
+    
+                li.selected {
+                color: red;
+                font-size:14px;
+            }                
+                /* Darker chat container */
+                #question {
+                    border: 2px solid #dedede;
+                    text-align:right;
+                    border-radius: 5px;
+                    margin-left: 150px;
+                    border-color: #ccc;
+                    background-color: #ddd;
+                }
+                #answer {
+                         border: 2px solid #dedede;
+                         background-color: #f1f1f1;
+                         border-radius: 5px;                         
+                         margin:5px;
+                         margin-right: 150px;
+                }                                                    
+              .scrollable{
+        		      background-color: lightblue;
+                		height:480px;
+                		width:1400px;
+                		overflow: auto;
+                		
+        		}		
+             input[type=text] {
+                    width: 75%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 20px;
+                    align:centre;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    box-sizing: border-box;
+                    border: 2px solid #17a2b8;
+                    border-radius: 4px       
+                              
+            }
+            
+    </style>
+
+</head>
+
+<body>
+    <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">24x7 Smart IT Helpdesk</h6>
+                </div>
+                
+                <div class="card-body" style="height:500px;">
+                    <div class="row">
+                       <div id="scroll" class="scrollable">
+                          <ul id="chat" class="list-group">
+                          
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+                    
+                     <form id="form1" method="POST">{% csrf_token %}
+                        <center><input id="input_ques" class="form-control" type="text" placeholder="Ask Questions here…" name="query"></center>
+                        <center><button id="submit_btn" class="btn btn-info" type="submit" >Send</button></center> 
+                     </form>
+                        
+            
+                    
+      </div>       
+    <right><button id="save" onclick="save()" class="btn btn-info" >Save Changes</button></right>
+    <script src="{% static 'chatbot/js/jquery.min.js' %}"></script>
+    <script src="{% static 'chatbot/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

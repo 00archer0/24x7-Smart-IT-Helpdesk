@@ -1,0 +1,42 @@
+      
+        <li id="question" class="list-group-item">
+               <p><strong>{{query}}</strong></p>
+                                       
+        </li>
+                
+         {% if text == "Model have to learn more vocabulary, Lack of Data or check your vocabulary" %}
+           
+               <ul id="answer" class="list-group-item">
+                       <span>OOPS!</span><br>                            
+                                     <li class="list-group-item" ">                       
+                                        <div class="media">
+                                                            <div class="col-md-12">
+                                                                <p>{{text}}</br><strong>Wolud you like to ans this question?</strong></p>
+                                                                <button class="btn btn-success" type="button" onclick="yes()">YES</button>
+                                                                <button class="btn btn-danger" type="button" onclick="later()">Later</button>                                                                
+                                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                </ul>                      
+           
+           {% else%}
+           <ul id="answer" class="list-group-item" >
+                    <span>ANSWER:</span><br>
+                        {% for res in itemlist %}
+                                 <li onclick="change_order(this)" id="answer_list"  class="list-group-item" style="margin-top: 5px;">                       
+                                    
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p>{{res}}</p><br>
+                
+                                                        </div>
+                                                    </div>
+                                                
+                                </li>
+                           {% endfor %} 
+              </ul>             
+             {% endif %}                      
+         
+        
+                    
