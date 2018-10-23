@@ -27,3 +27,6 @@
  - gensim
  - pandas
  and all the libraries it will ask you to download. 
+
+
+If you find any problem to run this feel free to connect with me at **00archer0@gmail.com**
