@@ -11,6 +11,7 @@
 - How frequently they take input data to train the model? - after 10 new questions 
 - if the support agent selects one from the suggestions provided, the system should be able to learn and then keep that as the correct   solution for similar future search’s. Implemented.
 
+
 # Instructions to run this project.
  
  1. Dwonload this project
